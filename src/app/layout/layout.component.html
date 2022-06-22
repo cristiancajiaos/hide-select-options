@@ -1,9 +1,32 @@
-<select class="form-control" [(ngModel)]="selectedOption">
-  <option *ngFor="let option of options" [value]="option.id">
-    {{option.name}}
-  </option>
-</select>
+<div class="row">
+  <div class="col-12 col-lg-6">
+    <select class="form-control" [(ngModel)]="selectedCategory" (change)="onChange($event)">
+      <ng-container *ngFor="let category of categories">
+        <option [value]="category.id">
+          {{category.name}}
+        </option>
+      </ng-container>
+    </select>
+  </div>
+  <div class="col-12 col-lg-6">
+    <select class="form-control" [(ngModel)]="selectedOption">
+      <ng-container *ngFor="let option of options">
+        <option *ngIf="option.category == selectedCategory" [value]="option.id">
+          {{option.name}}
+        </option>
+      </ng-container>
+    </select>
+  </div>
+</div>
 
 <hr/>
 
-<p>Selected option: {{selectedOption}}</p>
+<div class="row">
+  <div class="col-12 col-lg-6">
+      <p>Selected category: {{selectedCategory}}</p>
+  </div>
+   <div class="col-12 col-lg-6">
+      <p>Selected option: {{selectedOption}}</p>
+   </div>
+</div>
+
